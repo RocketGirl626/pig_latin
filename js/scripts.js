@@ -4,14 +4,34 @@ var pigLatin = function(phrase) {
   var firstLetter = normalSpeak.charAt(0);
   var secondLetter = normalSpeak.charAt(1);
   var thirdLetter = normalSpeak.charAt(2);
+  var qAlert = false;
   var consonants = '';
 
     if (firstLetter.match(/[aeiouAEIOU]/)) {
       pigSpeak = normalSpeak.concat('-ay');
+      return pigSpeak;
+    }
+    else if (firstLetter.match(/[yY]/)) {
+      consonants = firstLetter;
+      pigSpeak = normalSpeak.substr(1).concat("-").concat(consonants).concat("ay");
+      return pigSpeak;
+    }
+    else if ((firstLetter.match(/[qQ]/)) && (secondLetter.match(/[uU]/))) {
+      consonants = "qu";
+      pigSpeak = normalSpeak.substr(2);
+      pigSpeak = pigSpeak.concat("-").concat(consonants).concat("ay");
+      return pigSpeak;
+    }
+    else if ((secondLetter.match(/[qQ]/)) && (thirdLetter.match(/[uU]/))) {
+      consonants = firstLetter.concat("qu");
+      pigSpeak = normalSpeak.substr(3);
+      pigSpeak = pigSpeak.concat("-").concat(consonants).concat("ay");
+      return pigSpeak;
     }
     else if (firstLetter.match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/)) {
       consonants = firstLetter;
       pigSpeak = normalSpeak.substr(1);
+
       if (secondLetter.match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/)) {
         consonants = consonants.concat(secondLetter);
         pigSpeak = normalSpeak.substr(2);
