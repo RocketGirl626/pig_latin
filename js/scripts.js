@@ -14,15 +14,14 @@ var pigLatin = function(phrase) {
       pigSpeak = normalSpeak.substr(1);
       if (secondLetter.match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/)) {
         consonants = consonants.concat(secondLetter);
-        pigConstruct = pigConstruct.shift();
+        pigSpeak = normalSpeak.substr(2);
       }
       if (thirdLetter.match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/)) {
         consonants = consonants.concat(thirdLetter);
+        pigSpeak = normalSpeak.substr(3);
       }
-
-    
+      pigSpeak = pigSpeak.concat("-").concat(consonants).concat("ay");
     }
-
   return pigSpeak;
 };
 
